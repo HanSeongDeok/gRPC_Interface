@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.chb.examples.lib";
+option java_outer_classname = "HelloWorldProto";
+
+service Simple {
+  // 서버측에서 SayHello()의 파라미터 값으로 HelloRequest 의 객체를 받아 로직을 처리하고
+  // 직렬화된 데이터를 클라이언트에게 반환한다
+  rpc SayHello (HelloRequest) returns (HelloReply) {
+  }
+  rpc StreamFromServerToClient (HelloRequest) returns (stream HelloReply) {
+  }
+  rpc StreamFromClientToServer (stream HelloRequest) returns (stream HelloReply) {
+  }
+}
+
+message HelloRequest {
+  string name = 1;
+  string object = 2;
+}
+
+message HelloReply {
+  string message = 1;
+}
